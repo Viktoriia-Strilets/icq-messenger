@@ -1,0 +1,97 @@
+.button {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    background-color: #eee;
+}
+#connectButton {
+    background-color: #27ae60;
+    -fx-background-color: #27ae60;
+    -fx-text-fill: beige;
+}
+
+#connectButton:hover {
+    background-color: #116936;
+    -fx-background-color: #116936;
+    -fx-text-fill: beige;
+}
+
+#disconnectButton {
+    background-color: #c08e2b;
+    -fx-background-color: #c08e2b;
+    -fx-text-fill: beige;
+}
+
+#disconnectButton:hover {
+    background-color: #7b5508;
+    -fx-background-color: #7b5508;
+    -fx-text-fill: beige;
+}
+
+#sendButton {
+    background-color: #2980b9;
+    -fx-background-color: #2980b9;
+    -fx-text-fill: beige;
+}
+
+#sendButton:hover {
+    background-color: #05283f;
+    -fx-background-color: #05283f;
+    -fx-text-fill: beige;
+}
+
+#deleteAccountButton {
+    background-color: #c0392b;
+    -fx-background-color: #c0392b;
+    -fx-text-fill: beige;
+
+}
+
+#deleteAccountButton:hover {
+    background-color: #75190f;
+    -fx-background-color: #75190f;
+    -fx-text-fill: beige;
+}
+
+
+
+
+
+.tab-pane .tab {
+    background-color: #3b3b3b;
+    -fx-background-color: #3b3b3b;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+.tab-pane .tab:selected {
+    background-color: #545454;
+    -fx-background-color: #545454;
+    -fx-text-fill: white;
+}
+
+.tab-pane .tab-label {
+    -fx-text-fill: white;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 90px;
+    -fx-tab-max-width: 130px;
+    -fx-tab-min-height: 25px;
+    -fx-tab-max-height: 25px;
+}
+
+.tab-pane *.tab-header-area *.tab {
+    padding: 10 10;
+    -fx-padding: 10 10;
+}
+
+.tab-pane:focused .tab {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    border-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: none;
+}

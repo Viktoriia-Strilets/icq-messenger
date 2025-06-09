@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+        "type": "java",
+        "name": "ChatServer",
+        "request": "launch",
+        "mainClass": "nure.ua.server.ChatServer",
+        "projectName": "icq-messenger"
+    },
+    {
+        "type": "java",
+        "name": "Launch ChatClientApp",
+        "request": "launch",
+        "mainClass": "nure.ua.client.ChatClientApp",
+        "vmArgs": "--module-path C:/study/projects/2cours/kpp/javafx-sdk-21.0.7/lib --add-modules javafx.controls,javafx.fxml",
+        "projectName": "icq-messenger"
+    }
+]
+}

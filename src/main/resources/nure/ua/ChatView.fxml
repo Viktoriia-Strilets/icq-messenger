@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="nure.ua.client.controller.ChatController"
+            prefWidth="700" prefHeight="500"
+            stylesheets="@styles.css"
+            style="-fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color:rgb(23, 28, 32);">
+            <Label text="Chat Client" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="usernameInput" promptText="Username" 
+                       prefWidth="150" style="-fx-background-radius: 5; -fx-padding: 5;"/>
+            <PasswordField fx:id="passwordInput" promptText="Password" 
+                           prefWidth="150" style="-fx-background-radius: 5; -fx-padding: 5;"/>
+            <Button fx:id="connectButton" text="Connect"/>
+            <Button fx:id="disconnectButton" text="Disconnect" disable="true"/>             
+        </HBox>
+    </top>
+
+    <right>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 15; -fx-background-color:rgb(198, 198, 198); -fx-border-color:rgb(59, 63, 65); -fx-border-width: 1;">
+            <Label text="Users" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <ListView fx:id="usersList" prefWidth="180" style="-fx-background-radius: 5;"/>
+            <Button fx:id="deleteAccountButton" text="Delete Account" disable="true" maxWidth="150" /> 
+        </VBox>
+        
+    </right>
+
+    <center>
+        <TabPane fx:id="privateChatsTabPane"
+                 tabClosingPolicy="UNAVAILABLE">
+            <Tab text="System">
+                <TextArea fx:id="systemLogArea" editable="false" wrapText="true" />
+            </Tab>
+            <Tab text="Messages">
+                <TextArea fx:id="messagesArea" editable="false" wrapText="true"/>
+            </Tab>
+        </TabPane>
+    </center>
+
+</BorderPane>

@@ -91,7 +91,8 @@ public class ClientService {
         out.writeObject(request);
         out.flush();
     }
-    
+
+
     /**
      * Закриває з'єднання та звільняє ресурси.
      */

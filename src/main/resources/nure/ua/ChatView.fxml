@@ -24,7 +24,7 @@
     <right>
         <VBox spacing="10" alignment="CENTER" style="-fx-padding: 15; -fx-background-color:rgb(198, 198, 198); -fx-border-color:rgb(59, 63, 65); -fx-border-width: 1;">
             <Label text="Users" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-            <ListView fx:id="usersList" prefWidth="180" style="-fx-background-radius: 5;"/>
+            <ListView fx:id="usersList" prefWidth="180" styleClass="users-list"/>
             <Button fx:id="deleteAccountButton" text="Delete Account" disable="true" maxWidth="150" /> 
         </VBox>
         

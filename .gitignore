@@ -46,3 +46,4 @@ doc/
 
 # Ignore all files in libs directory (e.g. external jars)
 libs/
+.fake

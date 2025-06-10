@@ -95,3 +95,47 @@
     -fx-border-color: transparent;
     -fx-effect: none;
 }
+
+
+
+.users-list {
+    background-color: #f4f4f4;
+    -fx-background-color: #f4f4f4;
+    border-color: #3b3b3b;
+    -fx-border-color: #3b3b3b;
+    border-radius: 6;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    padding: 5;
+    -fx-padding: 5;
+    -fx-control-inner-background: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    -fx-font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+    -fx-font-size: 14px;
+}
+
+.users-list .list-cell {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: #333;
+    padding: 8 10;
+    -fx-padding: 8 10;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    font-weight: 500;
+    -fx-font-weight: 500;
+}
+
+.users-list .list-cell:hover {
+    background-color: #dcdcdc;
+    -fx-background-color: #dcdcdc;
+    cursor: hand;
+    -fx-cursor: hand;
+}
+
+.users-list .list-cell:selected {
+    background-color: #2980b9;
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+}

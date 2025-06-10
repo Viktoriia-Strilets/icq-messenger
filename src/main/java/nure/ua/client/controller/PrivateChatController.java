@@ -42,10 +42,13 @@ public class PrivateChatController {
         this.myUsername = myUsername;
         this.peerUsername = peerUsername;
 
-        displayedMessages.clear();
-        chatArea.clear();
+        if (!peerUsername.equals(this.peerUsername)) {
+            chatArea.clear();
+            displayedMessages.clear();
+            appendMessage("Chat with " + peerUsername + " opened.");
+        }       
 
-        appendMessage("Chat with " + peerUsername + " opened.");
+        
         try {
             client.requestHistoryWith(peerUsername);
         } catch (IOException e) {
@@ -60,9 +63,11 @@ public class PrivateChatController {
      * @param msg повідомлення, яке потрібно обробити
      */
     public void receiveMessage(Message msg) {
-        String uniqueId = msg.getSender() + "|" + msg.getTimestamp().toString() + "|" + msg.getText();
+        String timeKey = msg.getTimestamp().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        String uniqueId = msg.getSender() + "|" + timeKey + "|" + msg.getText();
         if (displayedMessages.contains(uniqueId)) {
-            return; // Повідомлення вже відображено
+            return; 
         }
         displayedMessages.add(uniqueId);
 
@@ -100,11 +105,12 @@ public class PrivateChatController {
                 client.sendMessage(myUsername, peerUsername, text);
                 Message localMsg = new Message(myUsername, peerUsername, text, LocalDateTime.now());
                 localMsg.setType(MessageType.TEXT);
-                receiveMessage(localMsg); // Відображення повідомлення локально
+                receiveMessage(localMsg);
                 inputField.clear();
             } catch (IOException e) {
                 appendMessage("Failed to send message.");
             }
         }
     }
+
 }

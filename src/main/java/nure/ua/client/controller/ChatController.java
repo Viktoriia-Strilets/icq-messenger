@@ -1,6 +1,7 @@
 package nure.ua.client.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -122,20 +123,34 @@ public class ChatController {
     @SuppressWarnings("UnnecessaryReturnStatement")
     private void onMessageReceived(Message msg) {
             Platform.runLater(() -> {
-                if (msg.getType() == MessageType.SYSTEM && msg.getText().startsWith("User ") && msg.getText().endsWith("has been deleted")) {
-                    String deletedUser = msg.getText().substring(5, msg.getText().indexOf(" has been deleted")).trim();
-                    knownUsers.remove(deletedUser);
-                    onlineUsers.remove(deletedUser);
+                if (msg.getType() == MessageType.DELETE_ACCOUNT_REQUEST) {                    
+                    String deletedUserRow = msg.getText().trim();
+                    String deletedUserMas[] = deletedUserRow.split(" ");
+                    String deletedUser = deletedUserMas[1];
 
-                    if (openedChatTabs.containsKey(deletedUser)) {
-                        Tab tab = openedChatTabs.get(deletedUser);
-                        privateChatsTabPane.getTabs().remove(tab);
-                        openedChatTabs.remove(deletedUser);
-                        chatControllers.remove(deletedUser);
+                    knownUsers.remove(deletedUser);
+                    onlineUsers.remove(deletedUser);     
+
+                    Tab removedTab = openedChatTabs.remove(deletedUser);
+                    if (removedTab != null) {
+                        privateChatsTabPane.getTabs().remove(removedTab);
+                    }
+                    chatControllers.remove(deletedUser);
+
+
+                    PrivateChatController controller = chatControllers.get(deletedUser);
+                    if (controller != null) {
+                        Message systemMsg = new Message("", deletedUser, deletedUser, LocalDateTime.now());
+                        systemMsg.setType(MessageType.DELETE_ACCOUNT_REQUEST);
+                        if (!chatControllers.containsKey(deletedUser)) {
+                             openPrivateChat(deletedUser);
+                        }
+                            
+                        controller.receiveMessage(systemMsg);
                     }
 
-                    appendSystemLog("User " + deletedUser + " has been deleted.");
                     updateUsersList();
+                    appendSystemLog("[System] User " + deletedUser + " has been deleted.");
                     return;
                 }  
 
@@ -258,12 +273,13 @@ public class ChatController {
      */
     private void deleteAccount() {
         if (client != null && myUsername != null) {
+            showAlert("Account Deleted", "Your account and messages have been permanently removed.");
             try {
-                client.deleteAccount();
-                appendMessage("Your account has been deleted.");
-                disconnect();
+                client.deleteAccount();                                                       
+                appendMessage("Your account has been deleted.");                   
+                disconnect();             
                 resetUI();
-                showAlert("Account Deleted", "Your account and messages have been permanently removed.");
+                
             } catch (IOException ex) {
                 showAlert("Error", "Failed to delete account: " + ex.getMessage());
             }

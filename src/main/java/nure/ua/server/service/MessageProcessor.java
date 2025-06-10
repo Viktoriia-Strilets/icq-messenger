@@ -83,15 +83,15 @@ public class MessageProcessor {
      */
     private void handleAccountDeletion(Message msg) throws IOException {
         String userToDelete = msg.getSender();
-        ClientManager.deleteMessagesOf(userToDelete);
-        UserManager.deleteUser(userToDelete);
-
         Message confirmation = new Message("Server", userToDelete, "Account deleted", LocalDateTime.now());
         confirmation.setType(MessageType.DELETE_ACCOUNT_CONFIRMATION);
         out.writeObject(confirmation);
         out.flush();
 
+        UserManager.deleteUser(userToDelete);
+        ClientManager.deleteMessagesOf(userToDelete); 
         ClientManager.removeClient(userToDelete, true);
+        
         ClientManager.broadcastOnlineUsers();
     }
 

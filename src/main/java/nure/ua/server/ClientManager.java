@@ -250,7 +250,7 @@ public class ClientManager {
      */
     public static void notifyUserDeleted(String username) {
         Message msg = new Message("System", "All", "User " + username + " has been deleted", LocalDateTime.now());
-        msg.setType(MessageType.SYSTEM);
+        msg.setType(MessageType.DELETE_ACCOUNT_REQUEST);
         for (ObjectOutputStream out : clients.values()) {
             try {
                 out.writeObject(msg);

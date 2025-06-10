@@ -117,19 +117,6 @@ public class ChatClient {
     }
 
     /**
-     * Запитує історію повідомлень з іншим користувачем.
-     * 
-     * @param peer ім'я співрозмовника
-     * @throws IOException у випадку проблем з мережею
-     */
-    public void requestHistoryWith(String peer) throws IOException {
-        Message request = new Message(username, peer, "", LocalDateTime.now());
-        request.setType(MessageType.HISTORY_REQUEST);
-        out.writeObject(request);
-        out.flush();
-    }
-
-    /**
      * Закриває всі відкриті ресурси та припиняє з'єднання.
      */
     public void close() {
@@ -163,6 +150,14 @@ public class ChatClient {
     /** @return об'єкт ObjectInputStream для отримання повідомлень */
     public ObjectInputStream getIn() {
        return in;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
 
